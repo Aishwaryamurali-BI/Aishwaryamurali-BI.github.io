@@ -1,0 +1,28 @@
+# Development screenshots (iteration artifacts)
+screenshot*.png
+ss_*.png
+final_*.png
+render*.png
+polish_*.png
+about_photo.png
+about_v2.png
+about_v3.png
+blend_test*.png
+color_test.png
+contact_blend*.png
+contact_gif*.png
+fix_index.png
+illust_index.png
+
+# Original untrimmed GIFs
+illustration 1.gif
+illustration_contact.gif
+
+# Node.js dev dependencies
+node_modules/
+package.json
+package-lock.json
+
+# IDE / tool directories
+.vs/
+.claude/
