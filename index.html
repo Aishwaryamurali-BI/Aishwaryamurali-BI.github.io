@@ -1,225 +1,495 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aishwarya Murali — Senior BI Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: 'rgb(235, 235, 235)',
-                        dark: 'rgb(28, 28, 28)',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-        body {
-            line-height: 1;
-            background-color: rgb(235, 235, 235);
-            color: rgb(28, 28, 28);
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aishwarya Murali — deployment record</title>
+<meta name="description" content="AI deployment and analytics engineer. Production agentic systems, enterprise integrations shipped with customers, and evaluation gates that catch failures before production. Every number from a live system.">
+<meta property="og:title" content="Aishwarya Murali — deployment record">
+<meta property="og:description" content="I deploy AI systems that survive contact with production.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eef0ea; --card:#f7f8f3; --ink:#151a18; --soft:#5c655e; --line:#d2d8cc; --line2:#c3cabb;
+    --cobalt:#1e4fa3; --cobalt-deep:#173d80; --signal:#cf4a0e; --signal-text:#a83f0b; --ok:#2e6b3f;
+    --ui:'Archivo',-apple-system,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--cobalt);color:#fff}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  section[id]{scroll-margin-top:70px}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- topbar ---------- */
+  nav{position:fixed;inset:0 0 auto 0;z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+  .brand{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+  .brand em{font-style:normal;color:var(--cobalt)}
+  .navlinks{display:flex;gap:20px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+  .navlinks a{text-decoration:none}
+  .navlinks a:hover{color:var(--cobalt)}
+  .navcta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--ink);padding:7px 14px;transition:background .15s,color .15s}
+  .navcta:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  @media(max-width:760px){.navlinks{gap:12px;font-size:11px}.brand em{display:none}}
+  @media(max-width:500px){.navlinks{display:none}}
+
+  /* ---------- hero ---------- */
+  header{padding:150px 0 64px}
+  .rec-line{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:36px}
+  .rec-line b{color:var(--signal-text);font-weight:600}
+  h1{font-weight:600;font-size:clamp(34px,5.6vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:960px}
+  h1 span{color:var(--cobalt)}
+  .hero-sub{margin-top:28px;max-width:640px;color:var(--soft);font-size:clamp(15.5px,1.35vw,18px)}
+  .hero-sub strong{color:var(--ink);font-weight:600}
+  .hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;padding:12px 20px;border:1.5px solid var(--ink);transition:background .15s,color .15s,border-color .15s}
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .btn-ghost:hover{border-color:var(--cobalt);color:var(--cobalt)}
+
+  /* verified strip */
+  .strip{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);margin-top:70px}
+  .strip-in{display:grid;grid-template-columns:repeat(5,1fr)}
+  @media(max-width:900px){.strip-in{grid-template-columns:repeat(2,1fr)}.cell:last-child{grid-column:span 2}.cell:nth-child(odd){padding-left:2px}.cell:nth-child(even){border-right:none}}
+  .cell{padding:20px 18px;border-right:1px solid var(--line)}
+  .cell:first-child{padding-left:2px}
+  .cell:last-child{border-right:none}
+  .cell b{display:block;font-family:var(--mono);font-weight:600;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em}
+  .cell b i{font-style:normal;color:var(--cobalt)}
+  .cell span{display:block;margin-top:3px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+
+  /* ---------- sections ---------- */
+  .sec{padding:96px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:0}
+  .sec-idx{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.12em;color:var(--signal-text)}
+  .sec-title{font-weight:600;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;text-transform:uppercase}
+  .sec-note{margin-left:auto;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);text-align:right}
+  @media(max-width:700px){.sec-note{display:none}}
+
+  /* deployment card */
+  .dep{border-bottom:1px solid var(--line2);padding:44px 0 52px}
+  .dep-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-bottom:16px}
+  .dep-id{color:var(--cobalt);font-weight:600}
+  .stamp{border:1.5px solid currentColor;padding:2px 8px;font-weight:600;font-size:10.5px;letter-spacing:.12em}
+  .stamp-live{color:var(--ok)}
+  .stamp-ship{color:var(--soft)}
+  .stamp-sig{color:var(--signal-text)}
+  .dep h3{font-weight:600;font-size:clamp(24px,3.2vw,40px);letter-spacing:-.02em;line-height:1.12;max-width:820px;margin-bottom:24px}
+  .dep-cols{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:52px;align-items:start}
+  @media(max-width:880px){.dep-cols{grid-template-columns:1fr;gap:32px}}
+  .dep-body{max-width:60ch;font-size:16px}
+  .dep-body p+p{margin-top:15px}
+  .dep-body strong{font-weight:600}
+  .facts{margin-top:26px;border-top:1px solid var(--line);padding-top:6px}
+  .fact{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:9px 0;font-size:14px}
+  .fact span:first-child{color:var(--soft)}
+  .fact b{font-family:var(--mono);font-weight:600;font-size:13.5px;text-align:right}
+  .fact b.hot{color:var(--cobalt)}
+
+  /* artifacts */
+  .artifact{border:1.5px solid var(--ink);background:var(--card)}
+  .arti-cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding:10px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+  .arti-cap b{color:var(--signal-text);font-weight:600}
+  .arti-note{font-family:var(--mono);font-size:11.5px;line-height:1.7;letter-spacing:.02em;color:var(--soft);margin-top:12px}
+  .arti-note a{color:var(--cobalt)}
+
+  .drill{padding:4px 10px 10px}
+  .crumb{font-family:var(--mono);font-size:11.5px;color:var(--soft);padding:10px 6px}
+  .crumb button{font-family:var(--mono);font-size:11.5px;background:none;border:none;color:var(--cobalt);cursor:pointer;text-decoration:underline;padding:0}
+  .drill-row{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;border-top:1px solid var(--line);padding:12px 8px;cursor:pointer;font-family:var(--ui);font-size:14px;color:var(--ink)}
+  .drill-row:hover{background:#eef0e6}
+  .drill-row .r-name{font-weight:500}
+  .drill-row .r-kpi{font-family:var(--mono);font-size:11.5px;color:var(--soft);text-align:right}
+  .drill-row .r-kpi b{color:var(--cobalt);font-weight:600}
+  .drill-row[data-leaf]{cursor:default}
+  .drill-row[data-leaf]:hover{background:none}
+
+  .term{background:#0c1210;border:1.5px solid var(--ink);font-family:var(--mono);font-size:12.8px;line-height:1.8;padding:16px 18px;color:#cdd6c8;min-height:230px;white-space:pre-wrap;word-break:break-word}
+  .term .t-dim{color:#8a9a8c}
+  .term .t-acc{color:#e07a3c}
+  .term .t-ok{color:#8fbb72}
+  .term-caret{display:inline-block;width:8px;height:14px;background:#e07a3c;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.term-caret{animation:none}}
+
+  .trick{padding:18px}
+  .trick label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-bottom:10px;line-height:1.7}
+  .trick input{width:100%;font-family:var(--ui);font-weight:600;font-size:20px;padding:8px 2px;border:none;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink)}
+  .receipt{margin-top:20px;background:#fff;border:1px solid var(--line2);padding:18px 20px}
+  .rc-top{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px dashed var(--line2);padding-bottom:12px;margin-bottom:12px}
+  .rc-clinic{font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .rc-doc{font-size:12px;color:var(--soft);margin-top:2px}
+  .rc-badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--cobalt);border:1px solid currentColor;padding:3px 7px;white-space:nowrap}
+  .rc-line{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0}
+  .rc-line span:first-child{color:var(--soft)}
+  .rc-total{display:flex;justify-content:space-between;border-top:1px solid var(--line2);margin-top:10px;padding-top:11px;font-weight:600;font-size:15px}
+  .rc-paid{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);margin-top:10px}
+
+  /* protocol */
+  .proto-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:52px;align-items:start;padding:44px 0 60px;border-bottom:1px solid var(--line2)}
+  @media(max-width:880px){.proto-grid{grid-template-columns:1fr;gap:32px}}
+  .step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .step:first-child{padding-top:0}
+  .step-n{font-family:var(--mono);font-weight:600;font-size:12px;color:var(--signal-text);padding-top:3px}
+  .step h4{font-weight:600;font-size:16px;letter-spacing:-.01em;margin-bottom:4px}
+  .step p{font-size:14px;color:var(--soft)}
+  .step p b{color:var(--ink);font-weight:600}
+
+  /* record table */
+  .rec-table{padding:20px 0 60px;border-bottom:1px solid var(--line2)}
+  .rec-row{display:grid;grid-template-columns:130px minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid var(--line);padding:16px 0}
+  @media(max-width:760px){.rec-row{grid-template-columns:96px 1fr}.rec-row .rr-what{grid-column:2;color:var(--soft)}}
+  .rr-yrs{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--soft)}
+  .rr-role{font-weight:600;font-size:15.5px}
+  .rr-role span{font-weight:400;color:var(--soft)}
+  .rr-what{font-size:13.5px;color:var(--soft)}
+  .creds{margin-top:26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;line-height:2.1;color:var(--soft)}
+  .creds b{color:var(--ink);font-weight:600}
+
+  /* availability */
+  .avail{padding:110px 0 90px}
+  .avail h2{font-weight:600;font-size:clamp(28px,4.4vw,56px);letter-spacing:-.025em;line-height:1.08;max-width:900px}
+  .avail h2 span{color:var(--cobalt)}
+  .bigmail{display:inline-block;margin-top:36px;font-family:var(--mono);font-weight:600;font-size:clamp(16px,3vw,30px);letter-spacing:-.01em;color:var(--ink);text-decoration:none;border-bottom:2.5px solid var(--signal);padding-bottom:4px;word-break:break-all;max-width:100%;transition:color .15s}
+  .bigmail:hover{color:var(--cobalt)}
+  .fin-links{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px 30px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+  .fin-links a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:3px}
+  .fin-links a:hover{color:var(--cobalt);border-color:var(--cobalt)}
+  footer{border-top:1px solid var(--line2);padding:22px 0 30px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--soft)}
+  .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  /* reveal (JS-gated) */
+  html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+  html.js .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){html.js .rv{opacity:1;transform:none;transition:none}}
+
+  /* small screens */
+  @media(max-width:640px){
+    header{padding:120px 0 48px}
+    .sec{padding:72px 0 8px}
+    .dep{padding:34px 0 40px}
+    .strip{margin-top:52px}
+  }
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="w-full flex flex-nowrap items-start justify-between" style="padding: 28px 30px 0;">
-        <!-- Left -->
-        <div class="flex items-center gap-[10px] flex-shrink-0">
-            <span style="font-size: 22px; line-height: 1;">✳</span>
-            <div style="font-size: 12px; line-height: 1.45;">
-                <p>Open for any</p>
-                <p>collaborations and offers</p>
-            </div>
-        </div>
-        <!-- Center -->
-        <div style="font-size: 18px; font-weight: 700; letter-spacing: 0.06em;">
-            <a href="index.html" style="text-decoration: none; color: inherit;">AM</a>
-        </div>
-    </header>
+<nav aria-label="Main">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Aishwarya Murali<em> · deployment record</em></a>
+    <div class="navlinks">
+      <a href="#deployments">Deployments</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#record">Record</a>
+    </div>
+    <a class="navcta" href="mailto:m.aishwaryamurali@gmail.com">Contact</a>
+  </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="relative w-full" style="margin-top: 10px;">
-        <div class="relative flex items-baseline justify-center whitespace-nowrap" style="padding-left: 2%;">
-            <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 900; font-size: min(11.5vw, 220px); line-height: 0.8; letter-spacing: -0.02em; position: relative; z-index: 1;">Aishwarya</span>
-            <span style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: min(11.5vw, 220px); line-height: 0.88; letter-spacing: -0.04em; margin-left: 0.5vw;">Murali</span>
-        </div>
-    </section>
+<header id="top">
+  <div class="wrap">
+    <p class="rec-line rv"><span><b>REC</b> 2012 — 2026</span><span>4 industries</span><span>production systems only</span><span>remote · US &amp; Canada</span></p>
+    <h1 class="rv">I deploy AI systems that<br><span>survive contact with production.</span></h1>
+    <p class="hero-sub rv">Forward-deployed before it had a name: <strong>50+ enterprise integrations</strong> shipped hands-on with customers like Verizon and Ecolab — <strong>98% of transactions flowing end-to-end with no human touch</strong>. Then the founder proof: a healthcare SaaS <strong>designed, built, and shipped by one person</strong> — AI agents doing the building, adversarial agents trying to break it. Everything below is from shipped systems.</p>
+    <div class="hero-cta rv">
+      <a class="btn btn-primary" href="mailto:m.aishwaryamurali@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="AishwaryaMurali_Resume.pdf">Resume</a>
+    </div>
+    <div class="strip rv">
+      <div class="strip-in">
+        <div class="cell"><b>0</b><span>critical security findings</span></div>
+        <div class="cell"><b>98<i>%</i></b><span>straight-through processing</span></div>
+        <div class="cell"><b><i>$</i>2.3M</b><span>annual client savings</span></div>
+        <div class="cell"><b>50<i>+</i></b><span>enterprise integrations</span></div>
+        <div class="cell"><b>300<i>+</i></b><span>sites on one data platform</span></div>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <!-- Navigation Row -->
-    <nav class="w-full flex flex-nowrap items-end" style="padding: 0 30px; margin-top: 65px;">
-        <div style="width: 30%;">
-            <p style="font-size: 11px; letter-spacing: 0.02em;">01</p>
-            <a href="about.html" style="font-size: 15px; font-weight: 500; margin-top: 3px; display: block; text-decoration: none; color: inherit;">About</a>
-        </div>
-        <div style="width: 30%;">
-            <p style="font-size: 11px; letter-spacing: 0.02em;">02</p>
-            <a href="works.html" style="font-size: 15px; font-weight: 500; margin-top: 3px; display: block; text-decoration: none; color: inherit;">Works</a>
-        </div>
-        <div style="width: 30%;">
-            <p style="font-size: 11px; letter-spacing: 0.02em;">03</p>
-            <a href="contact.html" style="font-size: 15px; font-weight: 500; margin-top: 3px; display: block; text-decoration: none; color: inherit;">Contact</a>
-        </div>
-        <div class="ml-auto flex-shrink-0">
-            <p style="font-size: 13px;">©2026</p>
-        </div>
-    </nav>
-
-    <!-- About Section -->
-    <section class="w-full flex flex-nowrap items-center justify-between" style="padding: 0 80px; margin-top: 120px;">
-        <!-- Left text block -->
-        <div class="flex flex-col items-center" style="width: 280px; flex-shrink: 0;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="rgb(28,28,28)" style="margin-bottom: 22px;">
-                <path d="M8 0L9.2 6.8L16 8L9.2 9.2L8 16L6.8 9.2L0 8L6.8 6.8L8 0Z"/>
-            </svg>
-            <p style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.55; text-align: center; max-width: 260px;">
-                AISHWARYA MURALI — SENIOR BUSINESS INTELLIGENCE ENGINEER FROM BENTONVILLE, ARKANSAS
-            </p>
-        </div>
-
-        <!-- Center illustration -->
-        <div class="flex-shrink-0" style="width: 400px; height: 280px; background: url('illustration_1_trimmed.gif') center/contain no-repeat; mix-blend-mode: darken; filter: brightness(1.12) contrast(1.08);" role="img" aria-label="Person working on laptop illustration">
-        </div>
-        <!-- OLD SVG REMOVED --><div style="display:none">
-                <!-- Chair seat -->
-                <path d="M150 210 Q155 205 170 202 L300 202 Q310 204 315 210" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Chair back (angled) -->
-                <path d="M285 200 Q300 185 310 160" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-
-                <!-- Person's legs - stretched out, relaxed -->
-                <!-- Left leg (top, crossed) -->
-                <path d="M175 175 Q145 165 120 175 Q105 182 95 178" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Right leg underneath -->
-                <path d="M185 185 Q155 185 130 195 Q115 202 105 198" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Shoes -->
-                <path d="M95 178 Q88 175 82 178 Q80 182 85 183" stroke="#1c1c1c" stroke-width="2" fill="none" stroke-linecap="round"/>
-                <path d="M105 198 Q98 196 92 199 Q90 203 95 204" stroke="#1c1c1c" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-                <!-- Torso - reclined against chair back -->
-                <path d="M200 180 Q220 165 240 145 Q260 130 270 120" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Shirt/collar detail -->
-                <path d="M250 138 Q255 142 260 138" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
-
-                <!-- Laptop on lap -->
-                <rect x="195" y="155" width="55" height="35" rx="3" fill="#1c1c1c" stroke="#1c1c1c" stroke-width="1.5"/>
-                <!-- Laptop screen hinge -->
-                <path d="M195 155 L215 132" stroke="#1c1c1c" stroke-width="2" stroke-linecap="round"/>
-                <path d="M250 155 L270 132" stroke="#1c1c1c" stroke-width="2" stroke-linecap="round"/>
-                <!-- Laptop screen -->
-                <rect x="215" y="128" width="55" height="28" rx="2" fill="#1c1c1c" opacity="0.08" stroke="#1c1c1c" stroke-width="1.5"/>
-                <!-- Apple dot on laptop -->
-                <circle cx="222" cy="170" r="2.5" fill="#ebebeb"/>
-
-                <!-- Right arm holding laptop -->
-                <path d="M260 135 Q268 148 260 160 Q255 168 250 172" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Right hand -->
-                <circle cx="250" cy="173" r="3" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
-
-                <!-- Left arm pointing UP (eureka!) -->
-                <path d="M245 138 Q230 120 225 105 Q222 95 218 80" stroke="#1c1c1c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Pointing finger -->
-                <path d="M218 80 L216 68" stroke="#1c1c1c" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- Other fingers curled -->
-                <path d="M218 80 Q222 76 220 73" stroke="#1c1c1c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                <path d="M218 80 Q224 78 223 75" stroke="#1c1c1c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-                <!-- Head -->
-                <ellipse cx="275" cy="108" rx="14" ry="16" fill="none" stroke="#1c1c1c" stroke-width="2.5"/>
-                <!-- Hair (messy/curly on top) -->
-                <path d="M262 100 Q265 88 270 85 Q275 82 280 85 Q285 82 288 88 Q290 95 288 100" stroke="#1c1c1c" stroke-width="2" fill="#1c1c1c"/>
-                <!-- Glasses -->
-                <circle cx="270" cy="108" r="5" fill="none" stroke="#1c1c1c" stroke-width="1.8"/>
-                <circle cx="282" cy="108" r="5" fill="none" stroke="#1c1c1c" stroke-width="1.8"/>
-                <path d="M275 108 L277 108" stroke="#1c1c1c" stroke-width="1.5"/>
-                <path d="M265 108 L262 106" stroke="#1c1c1c" stroke-width="1.2"/>
-                <!-- Slight smile -->
-                <path d="M273 115 Q276 117 279 115" stroke="#1c1c1c" stroke-width="1.2" fill="none"/>
-                <!-- Ear -->
-                <path d="M289 106 Q293 108 290 113" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
-
-                <!-- Lightbulb above head -->
-                <path d="M255 52 Q255 40 262 35 Q268 32 274 35 Q280 40 280 52 Q278 56 275 58 L260 58 Q257 56 255 52Z" stroke="#1c1c1c" stroke-width="1.8" fill="none"/>
-                <line x1="263" y1="62" x2="272" y2="62" stroke="#1c1c1c" stroke-width="1.5"/>
-                <line x1="264" y1="65" x2="271" y2="65" stroke="#1c1c1c" stroke-width="1.5"/>
-                <!-- Filament -->
-                <path d="M266 48 Q268 42 270 48 Q272 42 274 48" stroke="#1c1c1c" stroke-width="1" fill="none"/>
-
-                <!-- Cat sitting on the left -->
-                <!-- Cat body -->
-                <ellipse cx="65" cy="245" rx="15" ry="12" fill="#1c1c1c"/>
-                <!-- Cat head -->
-                <circle cx="62" cy="228" r="10" fill="#1c1c1c"/>
-                <!-- Cat ears -->
-                <path d="M55 222 L52 212 L59 219" fill="#1c1c1c"/>
-                <path d="M68 220 L72 211 L74 220" fill="#1c1c1c"/>
-                <!-- Cat eyes -->
-                <circle cx="58" cy="227" r="2" fill="#ebebeb"/>
-                <circle cx="66" cy="227" r="2" fill="#ebebeb"/>
-                <circle cx="58" cy="227" r="1" fill="#1c1c1c"/>
-                <circle cx="66" cy="227" r="1" fill="#1c1c1c"/>
-                <!-- Cat tail -->
-                <path d="M80 242 Q90 235 88 225" stroke="#1c1c1c" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-                <!-- Plant (behind chair, top right) -->
-                <!-- Pot -->
-                <path d="M320 185 L316 210 L335 210 L331 185Z" fill="none" stroke="#1c1c1c" stroke-width="2"/>
-                <!-- Leaves -->
-                <path d="M325 185 Q318 165 310 155 Q315 155 322 165 Q325 170 325 185" fill="none" stroke="#1c1c1c" stroke-width="1.8"/>
-                <path d="M325 185 Q332 162 340 152 Q337 155 330 165 Q326 172 325 185" fill="none" stroke="#1c1c1c" stroke-width="1.8"/>
-                <path d="M325 180 Q320 160 325 145 Q328 155 327 170" fill="none" stroke="#1c1c1c" stroke-width="1.8"/>
-                <!-- Leaf fills (subtle) -->
-                <path d="M325 185 Q318 165 312 157 Q320 162 325 185Z" fill="#1c1c1c" opacity="0.06"/>
-                <path d="M325 185 Q332 162 338 154 Q332 163 325 185Z" fill="#1c1c1c" opacity="0.06"/>
-
-                <!-- Decorative dots -->
-                <circle cx="290" cy="145" r="2" fill="#1c1c1c" opacity="0.4"/>
-                <circle cx="300" cy="155" r="1.5" fill="#1c1c1c" opacity="0.3"/>
-                <circle cx="150" cy="170" r="1.5" fill="#1c1c1c" opacity="0.25"/>
-                <circle cx="335" cy="170" r="1.5" fill="#1c1c1c" opacity="0.2"/>
-                <circle cx="240" cy="72" r="1.5" fill="#1c1c1c" opacity="0.3"/>
-
-                <!-- Floor line -->
-                <line x1="45" y1="258" x2="350" y2="258" stroke="#1c1c1c" stroke-width="0.5" opacity="0.15"/>
-            </svg>
-        </div></div>
-
-        <!-- Right text block -->
-        <div class="flex flex-col items-center" style="width: 280px; flex-shrink: 0;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="rgb(28,28,28)" style="margin-bottom: 22px;">
-                <path d="M8 0L9.2 6.8L16 8L9.2 9.2L8 16L6.8 9.2L0 8L6.8 6.8L8 0Z"/>
-            </svg>
-            <p style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.55; text-align: center; max-width: 280px;">
-                PASSIONATE ABOUT TURNING DATA INTO ACTIONABLE INSIGHTS AND SCALABLE ANALYTICS SOLUTIONS.
-            </p>
-        </div>
-    </section>
-
-    <!-- Tagline -->
-    <div class="w-full text-center" style="margin-top: 55px; padding-bottom: 35px;">
-        <p style="font-size: 13.5px; letter-spacing: -0.01em;">Senior Analytics Manager. From data to decisions with love.</p>
+<!-- 01 deployments -->
+<section class="sec" id="deployments">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-idx">01</span>
+      <h2 class="sec-title">Deployments</h2>
+      <span class="sec-note">newest first · numbers from production</span>
     </div>
 
+    <article class="dep">
+      <div class="dep-meta rv">
+        <span class="dep-id">DEP-04</span><span>2026 —</span><span>Dantra · founder</span>
+        <span class="stamp stamp-live">PRE-LAUNCH</span><span class="stamp stamp-sig">0 critical findings</span>
+      </div>
+      <h3 class="rv">A production healthcare SaaS, built by one person and a fleet of agents.</h3>
+      <div class="dep-cols">
+        <div class="dep-body rv">
+          <p><a href="https://dantra.in" target="_blank" rel="noopener" style="color:var(--cobalt);font-weight:600;text-decoration:none;border-bottom:1.5px solid currentColor">Dantra</a> is a multi-tenant, white-label practice-management platform for dental clinics — records, charting, treatment planning, tax-compliant billing, scheduling, WhatsApp-native patient messaging. I founded it, specced it, and shipped it solo using multi-agent Claude Code workflows for build, review, and adversarial validation.</p>
+          <p>The parts that matter when software sits next to patient data and money: <strong>tenants cannot see each other's data — the database enforces it, not the app</strong>. Billing is <strong>gap-less, append-only, integer money math</strong> — no floats, no silent edits. Clinical records only ever grow, and every change is logged. An adversarial AI red-team review — agents with no authorship of the code, given one instruction, <em>break it</em> — returned <strong>zero critical findings</strong>.</p>
+          <div class="facts">
+            <div class="fact"><span>Stack</span><b>TypeScript · Next.js · Postgres RLS · Cloudflare</b></div>
+            <div class="fact"><span>Security review</span><b class="hot">0 critical findings</b></div>
+            <div class="fact"><span>Release gate</span><b>cross-tenant isolation matrix · no override</b></div>
+            <div class="fact"><span>Team size</span><b class="hot">1</b></div>
+          </div>
+        </div>
+        <div class="rv">
+          <div class="artifact trick">
+            <label for="clinicName">White-label in one field — type a clinic name</label>
+            <input id="clinicName" type="text" maxlength="24" placeholder="Aishwarya" autocomplete="off">
+            <div class="receipt" aria-live="polite">
+              <div class="rc-top">
+                <div>
+                  <div class="rc-clinic" id="rcClinic">Aishwarya Dental Clinic</div>
+                  <div class="rc-doc" id="rcDoc">Dr. Aishwarya · Reg № 4471</div>
+                </div>
+                <span class="rc-badge">BILL OF SUPPLY</span>
+              </div>
+              <div class="rc-line"><span>Root canal — tooth 16</span><span>₹ 7,500</span></div>
+              <div class="rc-line"><span>Composite restoration</span><span>₹ 1,500</span></div>
+              <div class="rc-total"><span>Total</span><span>₹ 9,000</span></div>
+              <div class="rc-paid">● PAID IN FULL · UPI</div>
+            </div>
+            <p class="arti-note">Your name on the bill, not my product's — the point of white-label. Full demo at <a href="https://dantra.in" target="_blank" rel="noopener">dantra.in</a>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dep">
+      <div class="dep-meta rv">
+        <span class="dep-id">DEP-03</span><span>2021 — 2023</span><span>Mainfreight · Mainchain platform</span>
+        <span class="stamp stamp-ship">SHIPPED</span>
+      </div>
+      <h3 class="rv">Embedded with enterprise customers until the integration worked.</h3>
+      <div class="dep-cols">
+        <div class="dep-body rv">
+          <p>Mainchain is Mainfreight's customer-facing logistics platform — purchase order to booking to customs to invoice. I owned it end to end: discovery workshops with enterprise clients, API and EDI integration specs, deployment, and acceptance testing.</p>
+          <p>Automated integrations for clients including <strong>Verizon and Ecolab</strong> reached <strong>98% straight-through processing</strong> — transactions completing with no human touch — and saved clients <strong>$2.3M a year</strong>. I directed UAT for 50+ enterprise integrations — <strong>100% on-time go-live</strong> — and adoption crossed 80% across 300+ global branches. I worked pre-sales too: deals that included the platform closed 25% more often.</p>
+          <div class="facts">
+            <div class="fact"><span>Integrations shipped</span><b class="hot">50+ · 100% on-time</b></div>
+            <div class="fact"><span>Straight-through processing</span><b class="hot">98%</b></div>
+            <div class="fact"><span>Client savings</span><b>$2.3M / year</b></div>
+            <div class="fact"><span>Named clients</span><b>Verizon · Ecolab</b></div>
+          </div>
+        </div>
+        <div class="rv">
+          <div class="artifact">
+            <div class="arti-cap"><span><b>Try it</b> · drill from KPI to shipment</span><span>3 levels</span></div>
+            <div class="crumb" id="crumb" aria-live="polite">Executive view</div>
+            <div class="drill" id="drill"></div>
+          </div>
+          <p class="arti-note">Toy remake, illustrative data. The production platform served 300+ branches on one governed semantic layer — executives and operators reading the same numbers, so meetings argued strategy instead of arithmetic. Ad-hoc report requests fell 40%; one receivables view accelerated $2M+ in client payments.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="dep">
+      <div class="dep-meta rv">
+        <span class="dep-id">DEP-02</span><span>2019 — 2021</span><span>Modern Gourmet Foods</span>
+        <span class="stamp stamp-ship">SHIPPED</span>
+      </div>
+      <h3 class="rv">Automation that gave a team its evenings back.</h3>
+      <div class="dep-cols">
+        <div class="dep-body rv">
+          <p>A CPG company running on manual Excel rituals. I moved <strong>85% of reporting</strong> to automated SQL-backed pipelines and pointed RPA at order entry and journal postings — <strong>process time cut 98%, ~200 hours a month returned</strong>. The pattern that has held ever since: find the ritual, automate it, measure the hours.</p>
+        </div>
+        <div class="dep-body rv">
+          <div class="facts" style="margin-top:0">
+            <div class="fact"><span>Reporting automated</span><b class="hot">85%</b></div>
+            <div class="fact"><span>Process time (RPA)</span><b>−98%</b></div>
+            <div class="fact"><span>Hours returned</span><b>~200 / month</b></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dep" style="border-bottom:none">
+      <div class="dep-meta rv">
+        <span class="dep-id">DEP-01</span><span>2012 — 2016</span><span>TCS · embedded with Citi</span>
+        <span class="stamp stamp-ship">SHIPPED</span>
+      </div>
+      <h3 class="rv">A payments data platform that 100+ people learned to trust.</h3>
+      <div class="dep-cols">
+        <div class="dep-body rv">
+          <p>My first production system: the pipelines, cubes, and reporting for a global payments warehouse used by <strong>100+ stakeholders across five regions</strong>. An ETL rework lifted data accuracy 30% — and people stopped double-checking the numbers. First lesson, still true: <strong>shipping is easy; being believed is the job.</strong></p>
+        </div>
+        <div class="dep-body rv">
+          <div class="facts" style="margin-top:0">
+            <div class="fact"><span>Stakeholders</span><b>100+ · 5 regions</b></div>
+            <div class="fact"><span>Data accuracy</span><b class="hot">+30%</b></div>
+            <div class="fact"><span>Delivery</span><b>Scrum lead · BRDs · specs</b></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 protocol -->
+<section class="sec" id="protocol">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-idx">02</span>
+      <h2 class="sec-title">Protocol</h2>
+      <span class="sec-note">how I ship with agents</span>
+    </div>
+    <div class="proto-grid">
+      <div class="rv">
+        <div class="step"><span class="step-n">P1</span><div><h4>Discover in the field</h4><p>Sit with the people who own the workflow. Map what actually happens — not the org chart's version. <b>Use cases tied to measurable value</b>, or they don't get built.</p></div></div>
+        <div class="step"><span class="step-n">P2</span><div><h4>Spec before code</h4><p>Decision-complete specs and architecture decision records. Dantra shipped against <b>8 ADRs and a risk-ranked test strategy</b> — agents build fast; direction is the scarce input.</p></div></div>
+        <div class="step"><span class="step-n">P3</span><div><h4>Agents build, gates decide</h4><p>Multi-agent Claude Code workflows: planner, builder, reviewer, red-team. <b>The red-team agent has a veto.</b> AI output is a draft until it passes evaluation.</p></div></div>
+        <div class="step" style="border-bottom:none"><span class="step-n">P4</span><div><h4>Evals are the product</h4><p>Cross-tenant isolation matrix on every merge, no override. Concurrency-stressed money math. Adversarial security review before launch. <b>That's why the finding count is zero.</b></p></div></div>
+      </div>
+      <div class="rv">
+        <div class="term" id="term" aria-label="A sample AI-agent development session"><span class="t-dim">$</span> claude --agents plan,build,review,red-team<span class="term-caret" id="caret"></span></div>
+        <p class="arti-note">Reconstructed from a real session. The BLOCK is the feature — a gate that catches the failure before a customer does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 record -->
+<section class="sec" id="record">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-idx">03</span>
+      <h2 class="sec-title">Record</h2>
+      <span class="sec-note">roles · education · credentials</span>
+    </div>
+    <div class="rec-table rv">
+      <div class="rec-row"><span class="rr-yrs">2026 —</span><span class="rr-role">Founder <span>· Dantra</span></span><span class="rr-what">Multi-tenant healthcare SaaS · agent-built · pre-launch</span></div>
+      <div class="rec-row"><span class="rr-yrs">2024 — 25</span><span class="rr-role">Independent <span>· the re-tooling</span></span><span class="rr-what">Microsoft Fabric · Snowflake · dbt · Claude Code — portfolio public on GitHub</span></div>
+      <div class="rec-row"><span class="rr-yrs">2021 — 23</span><span class="rr-role">Senior Product &amp; Analytics Lead <span>· Mainfreight</span></span><span class="rr-what">Enterprise platform, integrations, data architecture</span></div>
+      <div class="rec-row"><span class="rr-yrs">2019 — 21</span><span class="rr-role">Business Intelligence Engineer <span>· Modern Gourmet Foods</span></span><span class="rr-what">Automation, pipelines, RPA</span></div>
+      <div class="rec-row"><span class="rr-yrs">2016 — 19</span><span class="rr-role">MS, Information Systems <span>· Cal State Fullerton</span></span><span class="rr-what">GPA 3.7</span></div>
+      <div class="rec-row" style="border-bottom:none"><span class="rr-yrs">2012 — 16</span><span class="rr-role">Business Intelligence Analyst <span>· TCS (Citi)</span></span><span class="rr-what">Payments data platform · global delivery</span></div>
+      
+      <p class="creds"><b>Working stack</b> — Claude &amp; Claude Code (multi-agent) · SQL · Python · TypeScript · Postgres · Snowflake · dbt · Power BI · Azure · Microsoft Fabric<br><b>Certifications</b> — PL-300 · Tableau Desktop · CargoWise Operator &amp; Specialist · Kofax RPA · AWS Cloud Practitioner Essentials</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 availability -->
+<section class="avail" id="status">
+  <div class="wrap">
+    <p class="rec-line rv"><span><b>STATUS</b> available</span><span>AI deployment · solutions · analytics</span><span>remote · US &amp; Canada</span></p>
+    <h2 class="rv">Deploy me where the AI strategy<br><span>meets its first real customer.</span></h2>
+    <a class="bigmail rv" href="mailto:m.aishwaryamurali@gmail.com">m.aishwaryamurali@gmail.com</a>
+    <div class="fin-links rv">
+      <a href="AishwaryaMurali_Resume.pdf">Resume (PDF)</a>
+      <a href="https://www.linkedin.com/in/maishwaryamurali" rel="me">LinkedIn</a>
+      <a href="https://github.com/Aishwaryamurali-BI" rel="me">GitHub</a>
+      <a href="https://dantra.in">Dantra</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 AISHWARYA MURALI</span>
+    <span>SINGLE HTML FILE · NO FRAMEWORKS · BUILT WITH THE PROTOCOL ABOVE</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+
+  const els=[...document.querySelectorAll('.rv')];
+  const below=els.filter(el=>{
+    if(el.getBoundingClientRect().top<innerHeight-20){el.classList.add('in');return false}
+    return true;
+  });
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+    }),{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+    below.forEach(el=>io.observe(el));
+  }else{below.forEach(el=>el.classList.add('in'))}
+
+  // drill-through toy (illustrative data)
+  const DATA={
+    exec:[["Airfreight","Spend $4.1M","air"],["Seafreight","TEUs 1,240 · Spend $6.8M","sea"],["Warehouse","Utilisation 91%","wh"]],
+    sea:[["Shanghai → Long Beach","62 shipments · 96% on-time","lane1"],["Auckland → Sydney","38 shipments · 99% on-time","lane2"]],
+    lane1:[["SHP-88412 · 2×40ft","ETA Aug 18 · customs cleared",null],["SHP-88437 · 1×20ft","ETA Aug 21 · on water",null],["SHP-88459 · 3×40ft","Delivered · invoiced",null]]
+  };
+  const drill=document.getElementById('drill'),crumb=document.getElementById('crumb');
+  const PATHS={exec:"Executive view",sea:"Executive view → Seafreight",lane1:"Executive view → Seafreight → Shanghai–Long Beach"};
+  function renderDrill(level){
+    if(!DATA[level])return;
+    crumb.innerHTML='';
+    const parts=PATHS[level].split(' → ');
+    parts.forEach((p,i)=>{
+      if(i<parts.length-1){
+        const b=document.createElement('button');
+        b.textContent=p;b.onclick=()=>renderDrill(i===0?'exec':'sea');
+        crumb.appendChild(b);crumb.appendChild(document.createTextNode(' → '));
+      }else{crumb.appendChild(document.createTextNode(p))}
+    });
+    drill.innerHTML='';
+    DATA[level].forEach(([name,kpi,next])=>{
+      const drillable=next&&DATA[next];
+      const row=document.createElement(drillable?'button':'div');
+      row.className='drill-row';
+      if(!drillable)row.setAttribute('data-leaf','');
+      row.innerHTML='<span class="r-name">'+name+'</span><span class="r-kpi">'+kpi.replace(/(\$[\d.]+M|\d+%)/g,'<b>$1</b>')+(drillable?' ↳':'')+'</span>';
+      if(drillable)row.onclick=()=>renderDrill(next);
+      drill.appendChild(row);
+    });
+  }
+  renderDrill('exec');
+
+  // terminal
+  const LINES=[
+    ['','\n'],
+    ['t-dim','[plan]    '],['','spec 0007 — payment allocation, edge cases\n'],
+    ['t-dim','[build]   '],['','214 lines · 9 tests · integer money math only\n'],
+    ['t-dim','[review]  '],['t-acc','BLOCK — float math in refund path → rewrite\n'],
+    ['t-dim','[build]   '],['','fixed · re-ran the money-math suite\n'],
+    ['t-dim','[red-team]'],[''," cross-tenant probes ×12 — "],['t-ok','all denied\n'],
+    ['t-dim','[ship]    '],['t-ok','merged · isolation matrix green · staging live\n']
+  ];
+  const term=document.getElementById('term'),caret=document.getElementById('caret');
+  let played=false;
+  function playTerm(){
+    if(played)return;played=true;
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){
+      LINES.forEach(([cls,txt])=>{const s=document.createElement('span');if(cls)s.className=cls;s.textContent=txt;term.insertBefore(s,caret)});
+      return;
+    }
+    let li=0,ci=0;
+    (function tick(){
+      if(li>=LINES.length)return;
+      const [cls,txt]=LINES[li];
+      if(ci===0){LINES[li].node=document.createElement('span');if(cls)LINES[li].node.className=cls;term.insertBefore(LINES[li].node,caret)}
+      LINES[li].node.textContent=txt.slice(0,++ci);
+      if(ci>=txt.length){li++;ci=0;setTimeout(tick,txt.endsWith('\n')?240:40)}
+      else setTimeout(tick,11);
+    })();
+  }
+  if('IntersectionObserver' in window){
+    const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){playTerm();tio.disconnect()}}),{threshold:.4});
+    tio.observe(term);
+  }else{playTerm()}
+
+  // signature trick
+  const inp=document.getElementById('clinicName');
+  const rcClinic=document.getElementById('rcClinic'),rcDoc=document.getElementById('rcDoc');
+  inp.addEventListener('input',()=>{
+    const v=inp.value.trim()||'Aishwarya';
+    const name=v.charAt(0).toUpperCase()+v.slice(1);
+    rcClinic.textContent=name+' Dental Clinic';
+    rcDoc.textContent='Dr. '+name+' · Reg № 4471';
+  });
+</script>
 </body>
 </html>
